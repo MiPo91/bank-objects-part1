@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankDB", "BankDB\BankDB.csproj", "{E79CEDEC-BA4B-403B-BC93-75C11028884E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Customer", "Customer\Customer.csproj", "{7129B600-41CC-44C2-ADC2-A178ED8EDE23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Customer", "Customer\Customer.csproj", "{7129B600-41CC-44C2-ADC2-A178ED8EDE23}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bank", "Bank\Bank.csproj", "{D6B418B4-92B9-4171-803B-EEED259EEB95}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{38C77948-28EA-46D8-A8F4-4BD7AB6CA2F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank", "Bank\Bank.csproj", "{D6B418B4-92B9-4171-803B-EEED259EEB95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{D6B418B4-92B9-4171-803B-EEED259EEB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6B418B4-92B9-4171-803B-EEED259EEB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6B418B4-92B9-4171-803B-EEED259EEB95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{38C77948-28EA-46D8-A8F4-4BD7AB6CA2F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38C77948-28EA-46D8-A8F4-4BD7AB6CA2F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38C77948-28EA-46D8-A8F4-4BD7AB6CA2F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38C77948-28EA-46D8-A8F4-4BD7AB6CA2F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

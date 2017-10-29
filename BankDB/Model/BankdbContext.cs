@@ -15,8 +15,7 @@ namespace BankDB.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=MIPO-PC\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
-                //optionsBuilder.UseSqlServer(@"Data Source=DKO-S010A-015\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
+                optionsBuilder.UseSqlServer(@"Data Source=DKO-S010A-015\SQLEXPRESS;Initial Catalog=bankdb;Integrated Security=True");
             }
         }
 

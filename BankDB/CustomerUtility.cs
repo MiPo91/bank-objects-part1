@@ -8,23 +8,23 @@ namespace BankDB
 {
     public class CustomerUtilities
     {
-        //public static List<int> AddCustomer(string NewFirstName, string NewLastName, string Id)
-        public static Customer AddCustomer(string NewFirstName, string NewLastName, string Id)
+        public static List<int> AddCustomer(string NewFirstName, string NewLastName, string Id)
         {
             int SelectedBankId;
             int.TryParse(Id, out SelectedBankId);
             List<int> UserData = new List<int>();
 
-            var context = new BankdbContext();
-            var newCustomer = new Model.Customer
-            {
-                FirstName = NewFirstName,
-                LastName = NewLastName,
-                BankId = SelectedBankId
-            };
-
             if (SelectedBankId > 0 && NewFirstName.Length >= 2 && NewLastName.Length >= 2 && NewFirstName.Length <= 50 && NewLastName.Length <= 50)
             {
+
+                var context = new BankdbContext();
+                var newCustomer = new Model.Customer
+                {
+                    FirstName = NewFirstName,
+                    LastName = NewLastName,
+                    BankId = SelectedBankId
+                };
+
                 context.Customer.Add(newCustomer);
                 context.SaveChanges();
 
@@ -33,14 +33,12 @@ namespace BankDB
 
                 Console.WriteLine("User Added to database.");
 
-                return newCustomer;
-                //return UserData;
+                return UserData;
             }
             else
             {
                 Console.WriteLine("Invalid Inputs");
-                return newCustomer;
-                //return UserData;
+                return UserData;
             }
         }
 
@@ -138,22 +136,19 @@ namespace BankDB
 
         }
 
-        public static List<BankAccount> GetCustomerAccounts(string SelectedCustomer)
+        public static List<string> GetCustomerAccounts(string SelectedCustomer)
         {
             int customerId;
             int.TryParse(SelectedCustomer, out customerId);
-            //List<string> IbanList = new List<string>();
-            List<BankAccount> BankAccounts = null;
-
+            List<string> IbanList = new List<string>();
             if (customerId > 0)
             {
                 try
                 {
                     var context = new BankdbContext();
-                    BankAccounts = context.BankAccount.Where(b => b.CustomerId == customerId)
+                    var BankAccounts = context.BankAccount.Where(b => b.CustomerId == customerId)
                         .ToListAsync().Result;
 
-                    /*
                     int i = 0;
                     foreach (var item in BankAccounts)
                     {
@@ -161,7 +156,6 @@ namespace BankDB
                         Console.WriteLine("{2}. Name: {0}, Balance: {1}", item.Name, item.Balance, i);
                         IbanList.Add(item.Iban);
                     }
-                    */
 
                 }
                 catch (Exception e)
@@ -173,48 +167,19 @@ namespace BankDB
             {
                 Console.WriteLine("Invalid Inputs");
             }
-
-            return BankAccounts;
-            //return IbanList;
-        }
-
-        public static void DeleteCustomerAccount(string selectedIBAN)
-        {
-            if (selectedIBAN.Length >= 12 && selectedIBAN.Length <= 50)
-            {
-                try
-                {
-                    var context = new BankdbContext();
-
-                    var DeletedAccount = context.BankAccount.Where(b => b.Iban == selectedIBAN).FirstOrDefault();
-                    context.BankAccount.Remove(DeletedAccount);
-                    context.SaveChanges();
-
-                    Console.WriteLine("Account Deleted.");
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Invalid Inputs");
-            }
-
+            return IbanList;
         }
 
 
-        //public static void AddCustomerTransaction(string selectedAccount, List<string> IbanList, string amount)
-        public static void AddCustomerTransaction(string iban, string amount)
+        public static void AddCustomerTransaction(string selectedAccount, List<string> IbanList, string amount)
         {
-            //int IbanSelector;
-            //int.TryParse(selectedAccount, out IbanSelector);
+            int IbanSelector;
+            int.TryParse(selectedAccount, out IbanSelector);
             decimal newAmount;
             decimal.TryParse(amount, out newAmount);
 
-            //string selectedIban = IbanList[IbanSelector - 1];
-            string selectedIban = iban;
+
+            string selectedIban = IbanList[IbanSelector - 1];
 
             try
             {
@@ -235,22 +200,6 @@ namespace BankDB
             }
 
 
-        }
-
-        public static List<BankAccountTransaction> GetAccountTransactions(string iban)
-        {
-            try
-            {
-                var context = new BankdbContext();
-                var bankAccounts = context.BankAccountTransaction.Where(t => t.Iban == iban).ToListAsync().Result;
-
-                return bankAccounts;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
         }
 
         public static void GetCustomerTransactions(string selectedUser)
